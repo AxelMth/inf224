@@ -1,0 +1,6 @@
+photo.o: ../src/photo.cpp ../src/photo.h ../src/multimedia.h
+video.o: ../src/video.cpp ../src/video.h ../src/multimedia.h
+afficheur.o: ../src/afficheur.cpp ../src/afficheur.h
+multimedia.o: ../src/multimedia.cpp ../src/multimedia.h
+main.o: ../src/main.cpp ../src/afficheur.h ../src/photo.h \
+ ../src/multimedia.h ../src/video.h

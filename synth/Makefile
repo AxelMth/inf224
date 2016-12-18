@@ -13,7 +13,8 @@ PROG = project
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = ../src/photo.cpp ../src/video.cpp ../src/afficheur.cpp ../src/multimedia.cpp ../src/main.cpp
+DIR := ../src/
+SOURCES = $(DIR)/photo.cpp $(DIR)/video.cpp $(DIR)/afficheur.cpp $(DIR)/multimedia.cpp $(DIR)/main.cpp $(DIR)/video.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
@@ -60,7 +61,7 @@ ${PROG}: depend-${PROG} ${OBJETS}
 	${CXX} -o $@ ${CXXFLAGS} ${LDFLAGS} ${OBJETS} ${LDLIBS}
 
 clean:
-	-@$(RM) *.o depend-${PROG} core 1>/dev/null 2>&1
+	-@$(RM) $(DIR)/*.o depend-${PROG} core 1>/dev/null 2>&1
 
 clean-all: clean
 	-@$(RM) ${PROG} 1>/dev/null 2>&1

@@ -1,8 +1,5 @@
 #include "multimedia.h"
 
-Multimedia::Multimedia(){
-}
-
 Multimedia::Multimedia(string _name, string _path){
     name = _name;
     path = _path;

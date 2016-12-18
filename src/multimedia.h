@@ -7,7 +7,7 @@ using namespace std;
 
 class Multimedia
 {
-private:
+protected:
     string name, path;
 public:
     Multimedia();

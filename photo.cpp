@@ -3,7 +3,7 @@
 #include "photo.h"
 
 void Photo::display(string path) const{
-	string command = "imagej ";
+	string command = "open ";
 	command += path;
 	system(command.c_str());
 }

@@ -1,10 +1,11 @@
 //#include "afficheur.h"
 #include <string>
-//#include "photo.h"
+#include "photo.h"
 //#include "video.h"
 //#include "multimedia.h"
 #include "film.h"
 #include "film.cpp"
+#include "groupe.h"
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
       string path;
       path = media[index]->getPath();
       media[index]->display(path);
-    }*/
+    }
 
     int tab[15];
     for(int j = 0; j < 15; j++){
@@ -54,9 +55,19 @@ int main(int argc, char *argv[])
     //printf("La 3ème valeur de tab2 est maintenant : %d\n",tab2[3]);
 
     film->affiche();
-    /*int i;
+    int i;
     for (i = 0; i < 15; i++)
-      printf("tab(%d) = %d\n",i,tab2[i]);*/
-    delete film;
+      printf("tab(%d) = %d\n",i,tab2[i]);
+    delete film;*/
+
+    Groupe * gp = new Groupe("Photos");
+    Photo * p = new Photo("Anna","~/Pictures/Numériser.jpeg",0,0);
+    gp->addMedia(p);
+    gp->printGroupe(cout);
+    gp->removeMedia(p);
+    gp->printGroupe(cout);
+    delete gp;
+    
+    //p->display("~/Pictures/Numériser.jpeg");
     return 0;
 }

@@ -8,9 +8,9 @@ using namespace std;
 class Afficheur
 {
 public:
-    Afficheur();
+    Afficheur() {};
     virtual void affiche (ostream& cout, string message);
-    virtual ~Afficheur();
+    virtual ~Afficheur() {};
 };
 
 #endif // AFFICHEUR_H

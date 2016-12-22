@@ -61,13 +61,15 @@ int main(int argc, char *argv[])
     delete film;*/
 
     Groupe * gp = new Groupe("Photos");
-    Photo * p = new Photo("Anna","~/Pictures/Numériser.jpeg",0,0);
+    shared_ptr<Photo> p(new Photo("Anna","~/Pictures/Numériser.jpeg",0,0));
     gp->addMedia(p);
     gp->printGroupe(cout);
+    p->display();
     gp->removeMedia(p);
     gp->printGroupe(cout);
+    //p->display(); // Segmentation Fault
     delete gp;
-    
     //p->display("~/Pictures/Numériser.jpeg");
+
     return 0;
 }

@@ -8,8 +8,8 @@ Video::Video (string _name, string _path, int _total_length){
 	total_length = _total_length;
 }
 
-void Video::display(string path) const{
-	string command = "mpv ";
+void Video::display() const{
+	string command = "open ";
 	command += path;
 	system(command.c_str());
 }

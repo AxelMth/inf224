@@ -2,6 +2,7 @@
 #define MULTIMEDIA_H
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -16,7 +17,8 @@ public:
     virtual void setPath(string path);
     virtual string getName();
     virtual string getPath();
-    virtual void display(string path) const = 0;
+    virtual void display() = 0;
     virtual ~Multimedia(){};
+    virtual void affiche() = 0;
 };
 #endif // MULTIMEDIA_H

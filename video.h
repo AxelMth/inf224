@@ -11,7 +11,7 @@ class Video : public Multimedia
 	public:
 		Video(string name, string path) : Multimedia(name, path){};
 		Video(string name="None", string path="None", int total_length = 0);
-		void display (string path) const final;
+		void display () const;
 		virtual ~Video() {};
 };
 

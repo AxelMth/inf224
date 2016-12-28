@@ -25,13 +25,13 @@ Gptr Table::createGroupe(string name){
 }
 
 void Table::find(string name){
-  obj_table::iterator it;
-  it = obj_table.find(name);
-  grp_table::iterator it2;
-  it2 = grp_table.find(name);
-  if (it != obj_table.end())
-    (*it)->affiche();
-  else if( it2 != grp_table.end())
-    (*it)->affiche();
+  map<string,Mptr>::iterator m_it;
+  map<string,Gptr>::iterator g_it;
+  m_it = obj_table.find(name);
+  g_it = grp_table.find(name);
+  if (m_it != obj_table.end())
+    (*m_it)->affiche();
+  else if(g_it != grp_table.end())
+    (*g_it)->affiche();
   else cout << "Aucun objet ne correspond à la recherche !" << endl;
 }

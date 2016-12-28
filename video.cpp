@@ -8,8 +8,15 @@ Video::Video (string _name, string _path, int _total_length){
 	total_length = _total_length;
 }
 
-void Video::display() const{
-	string command = "open ";
+void Video::display() {
+	string command = "mpv ";
 	command += path;
 	system(command.c_str());
+}
+
+void Video::affiche(){
+	cout << "Les attributs de la vidéo sont : " << endl;
+	cout << "nom: " << name << endl;
+	cout << "chemin: " << path << endl;
+	cout << "durée: " << total_length << endl;
 }

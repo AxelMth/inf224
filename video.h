@@ -11,8 +11,9 @@ class Video : public Multimedia
 	public:
 		Video(string name, string path) : Multimedia(name, path){};
 		Video(string name="None", string path="None", int total_length = 0);
-		void display () const;
+		virtual void display () override;
 		virtual ~Video() {};
+		virtual void affiche() override;
 };
 
 #endif

@@ -14,7 +14,8 @@ class Film : public Video {
     void setTab(const int * tab, int tab_length);
     virtual int * getTab() const;
     virtual inline int getNumberChapter() const {return number_chapter;}
-    virtual void affiche();
+    void affiche() final;
+    void print_tab();
     virtual ~Film(){delete [] tab;};
 };
 

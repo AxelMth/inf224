@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
       printf("tab(%d) = %d\n",i,tab2[i]);
     delete film;*/
 
-    Groupe * gp = new Groupe("Photos");
+    /*Groupe * gp = new Groupe("Photos");
     shared_ptr<Photo> p(new Photo("Anna","~/Pictures/Numériser.jpeg",0,0));
     gp->addMedia(p);
     gp->printGroupe(cout);
@@ -69,7 +69,11 @@ int main(int argc, char *argv[])
     gp->printGroupe(cout);
     //p->display(); // Segmentation Fault
     delete gp;
-    //p->display("~/Pictures/Numériser.jpeg");
+    //p->display("~/Pictures/Numériser.jpeg");*/
+
+    Video * v = new Video("video","path",150);
+    v->affiche();
+
 
     return 0;
 }

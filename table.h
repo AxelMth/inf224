@@ -3,8 +3,7 @@
 #include "video.h"
 #include "film.h"
 #include "groupe.h"
-#include <map>
-#include <string>
+#include <map>  
 
 typedef shared_ptr<Multimedia> Mptr;
 typedef shared_ptr<Photo> Pptr;

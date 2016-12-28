@@ -14,6 +14,6 @@ class Groupe : public pList
     string inline getName() {return name;};
     void addMedia(Mptr media);
     void removeMedia(Mptr media);
-    void printGroupe(ostream& cout);
+    void affiche();
     ~Groupe();
 };

@@ -15,7 +15,7 @@ void Groupe::removeMedia(Mptr media){
   }
 }
 
-void Groupe::printGroupe(ostream& cout){
+void Groupe::affiche(){
   cout << "my list contains :";
   for(pList::iterator it = begin(); it != end(); ++it){
     cout << " " << (*it)->getName();

@@ -1,11 +1,11 @@
 //#include "afficheur.h"
 #include <string>
 #include "photo.h"
-//#include "video.h"
-//#include "multimedia.h"
+#include "video.h"
+#include "multimedia.h"
 #include "film.h"
 #include "film.cpp"
-#include "groupe.h"
+#include "table.h"
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -70,10 +70,8 @@ int main(int argc, char *argv[])
     //p->display(); // Segmentation Fault
     delete gp;
     //p->display("~/Pictures/Numériser.jpeg");*/
-
-    Video * v = new Video("video","path",150);
-    v->affiche();
-
-
+    Table * t = new Table();
+    shared_ptr<Video> v = t->createVideo("Video","Path",350);
+    t->find("Video");
     return 0;
 }

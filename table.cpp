@@ -30,8 +30,8 @@ void Table::find(string name){
   m_it = obj_table.find(name);
   g_it = grp_table.find(name);
   if (m_it != obj_table.end())
-    (*m_it)->affiche();
+    obj_table[name]->affiche();
   else if(g_it != grp_table.end())
-    (*g_it)->affiche();
+    grp_table[name]->affiche();
   else cout << "Aucun objet ne correspond à la recherche !" << endl;
 }

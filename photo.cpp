@@ -2,8 +2,8 @@
 #include <cstring>
 #include "photo.h"
 
-void Photo::display() {
-	string command = "imagej ";	
+void Photo::play() {
+	string command = "imagej ";
 	command += path;
 	system(command.c_str());
 }

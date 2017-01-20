@@ -7,15 +7,16 @@ Film::Film(string name, string path, int total_length, int number_chapter, int *
 }
 
 void Film::setTab(const int * _tab, int tab_length){
-
-  if (tab_length > number_chapter){
+  /*if (tab_length > number_chapter){
     cerr << errmsg << endl;
     exit(2);
-  }
-
+  }*/
+  int * tab2 = new int[tab_length];
   int i;
   for (i =0; i < tab_length ; i++)
-    tab[i] = _tab[i];
+    tab2[i] = _tab[i];
+  tab = tab2;
+  delete [] tab2;
 }
 
 void Film::print_tab(){
@@ -24,15 +25,6 @@ void Film::print_tab(){
   for (i = 0; i < number_chapter; i++)
       printf("La durée du chapitre numéro %d est de %d secondes.\n",i,tab[i]);
 
-}
-
-int * Film::getTab() const {
-  int * _tab = new int(number_chapter);
-
-  for (int i = 0; i < number_chapter; i++)
-    _tab[i] = tab[i];
-
-  return _tab;
 }
 
 void Film::affiche(){

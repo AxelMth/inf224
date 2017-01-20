@@ -4,9 +4,13 @@
 #include "video.h"
 #include "multimedia.h"
 #include "film.h"
-#include "film.cpp"
 #include "table.h"
 using namespace std;
+
+typedef shared_ptr<Photo> Pptr;
+typedef shared_ptr<Video> Vptr;
+typedef shared_ptr<Film> Fptr;
+typedef shared_ptr<Groupe> Gptr;
 
 int main(int argc, char *argv[])
 {
@@ -70,8 +74,27 @@ int main(int argc, char *argv[])
     //p->display(); // Segmentation Fault
     delete gp;
     //p->display("~/Pictures/Numériser.jpeg");*/
+    /*Table * t = new Table();
+    shared_ptr<Photo> p(new Photo("Photo","Path",0,0));
+    shared_ptr<Photo> ph = t->createPhoto("Photo","~/Images/Photo.jpg",0,0);
+    shared_ptr<Video> v = t->createVideo("video","~/Vidéos/Video.mp4",350);
+    //ph->play();
+    shared_ptr<Groupe> g = t->createGroupe("Nom du Groupe");
+    g->addMedia(p);
+    t->play("Photo");
+    t->play("video");
+    delete t;*/
+
     Table * t = new Table();
-    shared_ptr<Video> v = t->createVideo("Video","Path",350);
-    t->find("Video");
+    Gptr g1 = t->createGroupe("Groupe 1");
+    Gptr g2 = t->createGroupe("Groupe 2");
+    shared_ptr<Photo> p(new Photo("Photo 1","Path"));
+    g1->addMedia(p);
+    bool flag = g1->find("Photo 1");
+    printf("%d\n",flag);
+    flag = g2->find("Photo 1");
+    printf("%d\n",flag);
+    t->deleteByName("Groupe 1");
+    delete t;
     return 0;
 }

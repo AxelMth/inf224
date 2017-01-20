@@ -8,7 +8,7 @@ Video::Video (string _name, string _path, int _total_length){
 	total_length = _total_length;
 }
 
-void Video::display() {
+void Video::play() {
 	string command = "mpv ";
 	command += path;
 	system(command.c_str());

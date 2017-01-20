@@ -14,7 +14,7 @@ PROG = project
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
 #DIR := ../src/
-SOURCES = photo.cpp video.cpp table.cpp afficheur.cpp multimedia.cpp main.cpp groupe.cpp
+SOURCES = photo.cpp film.cpp video.cpp table.cpp afficheur.cpp multimedia.cpp main.cpp groupe.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)

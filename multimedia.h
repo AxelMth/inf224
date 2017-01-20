@@ -10,6 +10,8 @@ class Multimedia
 {
 protected:
     string name, path;
+//private:
+  //  void *operator new (size_t size) = delete;
 public:
     Multimedia(){};
     Multimedia(string name,string path);
@@ -17,8 +19,8 @@ public:
     virtual void setPath(string path);
     virtual string getName();
     virtual string getPath();
-    virtual void display() = 0;
-    virtual ~Multimedia(){};
+    virtual void play() = 0;
+    virtual inline ~Multimedia(){};
     virtual void affiche() = 0;
 };
 #endif // MULTIMEDIA_H

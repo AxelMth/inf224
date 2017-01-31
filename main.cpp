@@ -88,13 +88,15 @@ int main(int argc, char *argv[])
     Table * t = new Table();
     Gptr g1 = t->createGroupe("Groupe 1");
     Gptr g2 = t->createGroupe("Groupe 2");
-    shared_ptr<Photo> p(new Photo("Photo 1","Path"));
-    g1->addMedia(p);
-    bool flag = g1->find("Photo 1");
-    printf("%d\n",flag);
-    flag = g2->find("Photo 1");
-    printf("%d\n",flag);
-    t->deleteByName("Groupe 1");
+    //shared_ptr<Photo> p(new Photo("Photo 1","Path"));
+    //œg1->addMedia(p);
+    Pptr p = t->createPhoto("Photo","~/Images/Photo.jpg",0,0);
+    t->play("Photo");
+    //bool flag = g1->find("Photo 1");
+    //printf("%d\n",flag);
+    //flag = g2->find("Photo 1");
+    //printf("%d\n",flag);
+    //t->deleteByName("Groupe 1");
     delete t;
     return 0;
 }

@@ -26,6 +26,6 @@ public:
   Gptr createGroupe(string name);
   int find(string name);
   void play(string name);
-  void deleteByName(string name);
+  //void deleteByName(string name);
   virtual ~Table();
 };

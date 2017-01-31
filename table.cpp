@@ -55,7 +55,7 @@ void Table::play(string _name){
   }
 }
 
-void Table::deleteByName(string _name){
+/*void Table::deleteByName(string _name){
   if (find(_name)){
     obj_table.erase(_name);
     cout << "L'Objet de nom : " << _name << " vient d'être détruit." << endl;
@@ -69,7 +69,7 @@ void Table::deleteByName(string _name){
     }
   }
 }
-
+*/
 Table::~Table(){
   obj_table.erase(obj_table.begin(),obj_table.end());
   grp_table.erase(grp_table.begin(),grp_table.end());

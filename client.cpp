@@ -40,7 +40,7 @@ int main() {
   }
   
   cout << "Client connected to "<< HOST << ":" << PORT << endl;
-  
+ 
   while (cin) {
     cout << "Request: ";
     string request, response;

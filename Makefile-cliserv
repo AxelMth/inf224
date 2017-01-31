@@ -52,7 +52,6 @@ LDLIBS= -lpthread
 
 ##########################################
 #
-
 # Regles de construction/destruction des .o et de l'executable
 # depend-${PROG} sera un fichier contenant les dependances
 #

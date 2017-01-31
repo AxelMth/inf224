@@ -10,15 +10,16 @@
 #include <sstream>
 #include "tcpserver.h"
 #include "photo.h"
+#include "table.h"
+#include "video.h"
 
 using namespace std;
 using namespace cppu;
 
 const int PORT = 3331;
 
-class MyBase {
+class MyBase : public Table {
 public:
-  Table *t;
   /* Cette méthode est appelée chaque fois qu'il y a une requête à traiter.
    * Ca doit etre une methode de la classe qui gere les données, afin qu'elle
    * puisse y accéder.
@@ -37,9 +38,6 @@ public:
    */
   bool processRequest(TCPConnection& cnx, const string& request, string& response)
   {
-	cerr << "Merci de renseigner le type de reque sous la forme :" << endl;
-	cerr << "Commande Type Nom Chemin <Attributs" << endl;
-
     	cerr << "\nRequest: '" << request << "'" << endl;	
 
 	stringstream ss;
@@ -60,34 +58,24 @@ public:
 	string total_length;
 	
 	ss >> command >> type >> name >> path;
-
-	switch(type){
-		case "photo":
-			ss >> longitude >> latitude;
-			break;
-		case "video":
-			ss >> total_length;
-			break;
-	}
-
-	switch(command){	
-		case "create":
-			switch(type){
-				case "photo":
-					t->createPhoto(name,path,longitude,latitude);
-					break;
-				case "video":
-					t->createVideo(name,path,total_length);
-					break;
-			}
-			break;
-		case "read":
-			t->display(
-	}	
-	Photo * p = new Photo("Photo",path,0,0);
 	
-	if (command == "display")
-		p->display();
+	if(type == "photo"){
+		ss >> longitude >> latitude;
+	} else {
+		ss >> total_length;
+	}
+	
+	if(command == "create"){
+		if(type == "photo"){
+			this->createPhoto(name,path,stof(longitude),stof(latitude));
+		}
+		else if (type == "video"){
+			this->createVideo(name,path,stof(total_length));
+		}
+	}
+	else if (command == "read"){
+		this->play(name);
+	}
 
     // 1) pour decouper la requête:
     // on peut par exemple utiliser stringstream et getline()

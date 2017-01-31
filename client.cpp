@@ -42,6 +42,9 @@ int main() {
   cout << "Client connected to "<< HOST << ":" << PORT << endl;
  
   while (cin) {
+    cout << "Merci de renseigner votre requête de la manière suivante" << endl;
+    cout << "Commande Type Nom Chemin <Attributs>" << endl;
+    cout << " Choisir le chemin dans les propositions suivantes : " << endl;
     cout << "Request: ";
     string request, response;
     

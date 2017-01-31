@@ -18,12 +18,7 @@ private:
   MMap obj_table;
   GMap grp_table;
 public:
-  friend class Photo;
-  friend class Video;
-  friend class Groupe;
-  friend class Film;
   Table(){};
-  friend Photo::Photo(string name, string path, double longitude = 0.0, double latitude = 0.0);
   Pptr createPhoto(string name, string path, double longitude, double latitude);
   Vptr createVideo(string name, string path, int length);
   Fptr createFilm(string name, string path, int length, int number_chapter, int * tab);

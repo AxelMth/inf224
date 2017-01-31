@@ -1,3 +1,4 @@
+//#define VERSION_TEST
 //#include "afficheur.h"
 #include <string>
 #include "photo.h"
@@ -10,6 +11,9 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	
+#ifdef VERSION_TEST
+
     /**Afficheur * afficheur = new Afficheur();
     afficheur->affiche(cout,"Hello World !");
     delete afficheur;
@@ -60,6 +64,7 @@ int main(int argc, char *argv[])
       printf("tab(%d) = %d\n",i,tab2[i]);
     delete film;*/
 
+
     /*Groupe * gp = new Groupe("Photos");
     shared_ptr<Photo> p(new Photo("Anna","~/Pictures/Numériser.jpeg",0,0));
     gp->addMedia(p);
@@ -71,7 +76,11 @@ int main(int argc, char *argv[])
     delete gp;
     //p->display("~/Pictures/Numériser.jpeg");*/
     Table * t = new Table();
-    shared_ptr<Video> v = t->createVideo("Video","Path",350);
-    t->find("Video");
+    shared_ptr<Photo> v = t->createPhoto("Video","~/Images/photo1.jpg",0,0);
+    v->display();
+#else 
+	
+	
+#endif
     return 0;
 }

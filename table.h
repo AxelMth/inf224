@@ -3,7 +3,7 @@
 #include "video.h"
 #include "film.h"
 #include "groupe.h"
-#include <map>  
+#include <map>
 
 typedef shared_ptr<Multimedia> Mptr;
 typedef shared_ptr<Photo> Pptr;
@@ -18,6 +18,10 @@ private:
   MMap obj_table;
   GMap grp_table;
 public:
+  friend class Photo;
+  friend class Video;
+  friend class Groupe;
+  friend class Film;
   Pptr createPhoto(string name, string path, double longitude, double latitude);
   Vptr createVideo(string name, string path, int length);
   Fptr createFilm(string name, string path, int length, int number_chapter, int * tab);

@@ -44,11 +44,12 @@ int main() {
   while (cin) {
     cout << "Merci de renseigner votre requête de la manière suivante" << endl;
     cout << "Commande Type Nom Chemin <Attributs>" << endl;
-    cout << " Choisir le chemin dans les propositions suivantes : " << endl;
+    cout << "Choisir le chemin dans les propositions suivantes : " << endl;
     cout << "Request: ";
     string request, response;
     
     getline(cin, request);
+
     if (request == "quit") return 0;
     
     // Envoyer la requete au serveur
@@ -56,7 +57,7 @@ int main() {
       cerr << "Client: Couldn't send message" << endl;
       return 2;
     }
-    
+
     // Recuperer le resultat envoye par le serveur
     if (sockbuf.readLine(response) < 0) {
       cerr << "Client: Couldn't receive message" << endl;

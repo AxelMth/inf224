@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
     t->play("video");
     delete t;*/
 
-    Table * t = new Table();
+    /*Table * t = new Table();
     shared_ptr<Photo> v = t->createPhoto("Video","~/Images/photo1.jpg",0,0);
     v->display();
 
@@ -105,7 +105,29 @@ int main(int argc, char *argv[])
     //flag = g2->find("Photo 1");
     //printf("%d\n",flag);
     //t->deleteByName("Groupe 1");
-    delete t;
+    delete t;*/
+ 	Table * t = new Table(); 
+    shared_ptr<Photo> photo = t->createPhoto("Paysage","~/Images/Paysage.jpg",0,0);
+  shared_ptr<Photo> photo1 = t->createPhoto("Elephant","~/Images/Elephant.png",0,0);
+  shared_ptr<Photo> photo2 = t->createPhoto("PieChart","~/Images/PieChart.jpg",0,0);
+  shared_ptr<Video> video = t->createVideo("Tuning","~/Videos/video1.mp4",15);
+  int tab[2] = {1,2};
+  shared_ptr<Film> film = t->createFilm("Tuning","~/Videos/video1.mp4",15,2,tab);
+
+
+  shared_ptr<Groupe> wallpaper = t->createGroupe("Fond d'écran");
+  wallpaper->addMedia(photo);
+
+  shared_ptr<Groupe> other = t->createGroupe("Autres");
+  other->addMedia(photo1);
+  other->addMedia(photo2);
+  other->addMedia(video);
+  other->addMedia(film);
+ 
+ 	other->removeMediaByName("Elephant");
+	string result = other->affiche();
+	printf(result.c_str());
+	delete t;
     #else 
     #endif    
     

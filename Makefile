@@ -10,6 +10,8 @@
 # Nom du programme
 #
 PROG = project
+CLIENT = client
+SERVER = server
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
@@ -67,7 +69,7 @@ clean:
 	-@$(RM) *.o depend-${PROG} core 1>/dev/null 2>&1
 
 clean-all: clean
-	-@$(RM) ${PROG} 1>/dev/null 2>&1
+	-@$(RM) ${PROG} $(CLIENT) $(SERVER) 1>/dev/null 2>&1
 
 tar:
 	tar cvf ${PROG}.tar.gz ${SOURCES}

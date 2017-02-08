@@ -13,14 +13,13 @@ protected:
 //private:
   //  void *operator new (size_t size) = delete;
 public:
-    Multimedia(){};
-    Multimedia(string name,string path);
+    Multimedia(string name,string path) : name(name), path(path){};
     virtual void setName(string name);
     virtual void setPath(string path);
-    virtual string getName();
-    virtual string getPath();
+    virtual string getName() const;
+    virtual string getPath() const;
     virtual void play() = 0;
     virtual inline ~Multimedia(){};
-    virtual void affiche() = 0;
+    virtual void affiche(ostream& ss) = 0;
 };
 #endif // MULTIMEDIA_H

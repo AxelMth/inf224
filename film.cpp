@@ -27,16 +27,16 @@ void Film::print_tab(){
 
 }
 
-void Film::affiche(){
+void Film::affiche(ostream& s){
 
-  cout << "Les attributs du film sont : " << endl;
-	cout << "nom: " << name << endl;
-	cout << "chemin: " << path << endl;
-	cout << "durée: " << total_length << endl;
-	cout << "nombre de chapitres: " << number_chapter << endl;
-  cout << "table des chapitres:" << endl;
+  s << "Les attributs du film sont : " << endl;
+  s << "nom: " << name << endl;
+  s << "chemin: " << path << endl;
+  s << "durée: " << total_length << endl;
+  s << "nombre de chapitres: " << number_chapter << endl;
+  s << "table des chapitres:" << endl;
   for (int i = 0;  i < number_chapter; i++){
-    cout << "Le chapitre numéro " << i+1 << " dure " << tab[i] << " seconde(s)" << endl;
+    s << "Le chapitre numéro " << i+1 << " dure " << tab[i] << " seconde(s)" << endl;
   }
 
 }

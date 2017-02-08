@@ -30,46 +30,72 @@ int Table::find(string name){
   m_it = obj_table.find(name);
   g_it = grp_table.find(name);
   if (m_it != obj_table.end())
-    //cout << name << " appartient à la table des objets " << endl;
     return 1;
   else if(g_it != grp_table.end())
-    //cout << name << " appartient à la table des groupes " << endl;
     return 2;
   else {
-    //cout << "Aucun objet ne correspond à la recherche !" << endl;
     return 0;
   }
 }
 
-void Table::play(string _name){
+void Table::play(string _name, ostream& s){
   switch (find(_name)){
       case 1:
+      	s << "Objet en cours d'affichage..." << endl;
         obj_table[_name]->play();
         break;
       case 2:
-        cout << "On ne peut pas jouer car il s'agit d'un groupe" << endl;
+        s << "On ne peut pas jouer car il s'agit d'un groupe" << endl;
         break;
       case 0:
-        cout << "L'objet n'est pas dans la table" << endl;
+        s << "L'objet n'est pas dans la table" << endl;
         break;
   }
 }
 
-/*void Table::deleteByName(string _name){
-  if (find(_name)){
+void Table::deleteByName(string _name,ostream& s){
+  
+  if (find(_name) == 1){
     obj_table.erase(_name);
-    cout << "L'Objet de nom : " << _name << " vient d'être détruit." << endl;
-  } else {
-    for (map<string,Gptr>::iterator g_it = grp_table.begin(); g_it != grp_table.end(); ++g_it){
-      if ((*g_it)->find(_name)){
-        string gname = (*g_it)->getName();
-        (*g_it)->removeMediaByName(_name);
-        cout << "L'objet de nom : " << _name << " qui se trouvait dans le groupe " << gname << " vient d'être détruit" << endl;
-      }
-    }
+    s << "Suppression de l'objet " << _name << " dans la table des objets" << endl;
+  } 
+  else{ 
+  	for (auto it : grp_table){	
+      		if (grp_table[it.first]->find(_name)){
+        		string grp_name = grp_table[it.first]->getName();
+			grp_table[it.first]->removeMediaByName(_name);
+        		s << "L'objet de nom : " << _name << " qui se trouvait dans le groupe " << grp_name << " vient d'être détruit" << endl;
+       		}
+  	}
   }
+ 
 }
-*/
+
+
+
+void Table::displayAll(ostream& s){
+
+	s << "Contenu de la table des objets : ";
+	for (auto it : obj_table){
+		s << it.first + " ";
+	}
+	s << endl;
+	for (auto it : grp_table){
+		s << "Le groupe de nom : " << it.first << " contient: " << grp_table[it.first]->affiche() << endl;
+	}
+}
+
+void Table::affiche(string name, ostream& s){
+	switch(find(name)){
+		case 1:
+			obj_table[name]->affiche(s); 
+			break;
+		case 0:
+			s << "L'objet n'est pas dans la table...";
+			break;
+	}
+}
+
 Table::~Table(){
   obj_table.erase(obj_table.begin(),obj_table.end());
   grp_table.erase(grp_table.begin(),grp_table.end());

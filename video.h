@@ -7,13 +7,13 @@
 class Video : public Multimedia
 {
 	protected:
+		Video(string name, string path, int total_length = 0) : Multimedia(name, path), total_length(total_length){};
 		int total_length; // en secondes
 	public:
-		Video(string name, string path) : Multimedia(name, path){};
-		Video(string name="None", string path="None", int total_length = 0);
+		friend class Table;
 		virtual void play () override;
 		virtual ~Video() {};
-		virtual void affiche() override;
+		virtual void affiche(ostream& s) override;
 };
 
 #endif

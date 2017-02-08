@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 #include "tcpserver.h"
 #include "photo.h"
 #include "table.h"
@@ -18,8 +19,30 @@ using namespace cppu;
 
 const int PORT = 3331;
 
-class MyBase : public Table {
+class MyBase : public Table{
 public:
+
+	MyBase() {
+	
+  shared_ptr<Photo> photo = createPhoto("Paysage","~/Images/Paysage.jpg",0,0);
+  shared_ptr<Photo> photo1 = createPhoto("Elephant","~/Images/Elephant.png",0,0);
+  shared_ptr<Photo> photo2 = createPhoto("PieChart","~/Images/PieChart.jpg",0,0);
+  shared_ptr<Video> video = createVideo("Tuning","~/Videos/video1.mp4",15);
+  int tab[2] = {1,2};
+  shared_ptr<Film> film = createFilm("Tuning","~/Videos/video1.mp4",15,2,tab);
+
+
+  shared_ptr<Groupe> wallpaper = createGroupe("Fond d'écran");
+  wallpaper->addMedia(photo);
+
+  shared_ptr<Groupe> other = createGroupe("Autres");
+  other->addMedia(photo1);
+  other->addMedia(photo2);
+  other->addMedia(video);
+  other->addMedia(film);
+
+
+	};
   /* Cette méthode est appelée chaque fois qu'il y a une requête à traiter.
    * Ca doit etre une methode de la classe qui gere les données, afin qu'elle
    * puisse y accéder.
@@ -40,9 +63,8 @@ public:
   {
     	cerr << "\nRequest: '" << request << "'" << endl;	
 
-	stringstream ss;
-
-	ss << request;
+	stringstream ss(request);
+	stringstream rep;
 	
 	// On sépare le requêtes 
 	string command;
@@ -57,24 +79,63 @@ public:
 	// Attribut video
 	string total_length;
 	
-	ss >> command >> type >> name >> path;
-	
+	// Attributs film
+	string number_chapter;
+	int tableau[20];
+
+	ss >> command;
+
+	if (command == "create")
+		ss >> type >> name >> path;
+
+	if (command == "read")
+		ss >> name;
+
+	if (command  == "display")
+		displayAll(rep);
+
+	if (command == "delete"){
+		//TCPLock lock(cnx,true);
+		ss >> name;
+		deleteByName(name,rep);
+		//lock(cnx,false);
+	}
 	if(type == "photo"){
 		ss >> longitude >> latitude;
-	} else {
+	} else if (type == "video"){
 		ss >> total_length;
+	} else if (type == "film"){
+		ss >> total_length >> number_chapter;
+		int i = 0;
+		while (!ss.eof() && i < 20){
+			string current;
+			ss >> current;
+			*(tableau+i) = stoi(current);
+			i++;
+		}
 	}
 	
 	if(command == "create"){
+		//TCPLock lock(cnx, true);
 		if(type == "photo"){
-			this->createPhoto(name,path,stof(longitude),stof(latitude));
+			createPhoto(name,path,stof(longitude),stof(latitude));
+			rep << "Photo bien créée ! " << endl;
+			affiche(name,rep);
 		}
 		else if (type == "video"){
-			this->createVideo(name,path,stof(total_length));
+			createVideo(name,path,stoi(total_length));
+			rep << "Vidéo bien créée ! " << endl;
+			affiche(name,rep);
 		}
+		else if (type == "film"){
+			createFilm(name,path,stoi(total_length),stoi(number_chapter),tableau);
+			rep << "Film bien créé ! " << endl;
+			affiche(name,rep);
+		}
+		//lock(cnx, false);
 	}
 	else if (command == "read"){
-		this->play(name);
+		play(name,rep);
 	}
 
     // 1) pour decouper la requête:
@@ -93,8 +154,10 @@ public:
     // - attention, la requête NE DOIT PAS contenir les caractères \n ou \r car
     //   ils servent à délimiter les messages entre le serveur et le client
     
-    response = "OK: " + command + ' ' + path;
-    cerr << "Response: " << response << endl;
+    string realRep = rep.str();
+    replace(realRep.begin(),realRep.end(),';','\n');
+
+    cerr << "Response: " << realRep << endl;
     
     // renvoyer false si on veut clore la connexion avec le client
     return true;
@@ -104,7 +167,6 @@ public:
 
 int main(int argc, char* argv[])
 {
-  
   // cree le TCPServer
   shared_ptr<TCPServer> server(new TCPServer());
   

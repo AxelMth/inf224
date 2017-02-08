@@ -6,27 +6,27 @@ void Groupe::addMedia(Mptr media){
 }
 
 void Groupe::removeMedia(Mptr media){
-  iterator it;
+  pList::iterator toDelete;
   for(pList::iterator it = begin(); it != end(); ++it){
     if ((*it)->getName() == media->getName())
-      erase(it);
-      cout << (*it)->getName() << " vient d'être détruit" << endl;
-      it->reset();
+      toDelete = it;
+      //cout << (*it)->getName() << " vient d'être détruit" << endl;
+      //it->reset();
   }
+  erase(toDelete);
 }
 
 void Groupe::removeMediaByName(string _name){
-  iterator it;
+  pList::iterator toDelete;
   for(pList::iterator it = begin(); it != end(); ++it){
-    if ((*it)->getName() == _name)
-      erase(it);
-      cout << (*it)->getName() << " vient d'être détruit du groupe de nom : " << name << endl;
-      it->reset();
+    if ((*it)->getName() == _name){
+      toDelete = it;
+    }
   }
+  erase(toDelete); 
 }
 
 bool Groupe::find(string _name){
-  iterator it;
   for(pList::iterator it = begin(); it != end(); ++it){
     if ((*it)->getName() == _name)
       return true;
@@ -34,12 +34,12 @@ bool Groupe::find(string _name){
   return false;
 }
 
-void Groupe::affiche(){
-  cout << "Le groupe contient :";
+string Groupe::affiche(){
+  string result;
   for(pList::iterator it = begin(); it != end(); ++it){
-    cout << " " << (*it)->getName();
+    result += (*it)->getName() + " ";
   }
-  cout << endl;
+  return result;
 }
 
 Groupe::~Groupe() {

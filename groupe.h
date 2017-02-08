@@ -11,11 +11,11 @@ class Groupe : public pList
     string name;
   public:
     Groupe(string name) : name(name){};
-    string inline getName() {return name;};
+    string inline getName() const {return name;};
     void addMedia(Mptr media);
     void removeMedia(Mptr media);
     void removeMediaByName(string name);
     bool find(string name);
-    void affiche();
+    string affiche();
     ~Groupe();
 };

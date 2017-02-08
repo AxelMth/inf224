@@ -1,3 +1,10 @@
-server.o: server.cpp tcpserver.h cppsocket.h photo.h multimedia.h
+server.o: server.cpp tcpserver.h cppsocket.h photo.h multimedia.h table.h \
+ video.h film.h groupe.h
 tcpserver.o: tcpserver.cpp tcpserver.h cppsocket.h
 cppsocket.o: cppsocket.cpp cppsocket.h
+table.o: table.cpp table.h photo.h multimedia.h video.h film.h groupe.h
+multimedia.o: multimedia.cpp multimedia.h
+photo.o: photo.cpp photo.h multimedia.h
+video.o: video.cpp video.h multimedia.h
+film.o: film.cpp film.h video.h multimedia.h
+groupe.o: groupe.cpp groupe.h multimedia.h

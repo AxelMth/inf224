@@ -1,15 +1,10 @@
 #include "multimedia.h"
 
-Multimedia::Multimedia(string _name, string _path){
-    name = _name;
-    path = _path;
-}
-
-string Multimedia::getName(){
+string Multimedia::getName() const{
     return name;
 }
 
-string Multimedia::getPath(){
+string Multimedia::getPath() const{
     return path;
 }
 
